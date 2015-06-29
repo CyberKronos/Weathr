@@ -1,4 +1,4 @@
-# Hack-Street-Boys
+# Weathr
 
 Weathr is an application that a user can go to for all of their weather scheduling needs. The user will be able to login to their google account, and manage their favorite locations. It will also be easy to add new locations to your favorites. The user will also have a list of events that they have planned, these events will have an optional location and a weather description. Users will also be able to share the events they plan on going to on facebook.
 
