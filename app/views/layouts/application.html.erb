@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weathr</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.css" %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <!-- JQuery Libs -->
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" %>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js" %>
+
+  <!-- Google Map Libs -->
+  <%= javascript_include_tag "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" %>
+  <%= javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js" %>
+  <%= javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js" %>
+
+  <!-- Calender Libs -->
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js" %>
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.min.js" %>
+  <%= csrf_meta_tags %>
+
+  <!-- Facebook Open Graph meta tags -->
+  <meta property="fb:app_id"          content="1580886888863240" /> 
+  <meta property="og:type"            content="article" /> 
+  <meta property="og:url"             content="https://cherry-tart-2858.herokuapp.com/" /> 
+  <meta property="og:title"           content="This is awesome - just scheduled my events on Weathr! Try it out yourself" /> 
+  <meta property="og:description"     content="Weathr is a web application that a user can go to for all of their weather scheduling needs." />
+  
+  <link rel="icon" 
+      type="image/png" 
+      href="/assets/rain.png">
+      
+</head>
+<body>
+
+<div align="right">
+	<div align="right">
+      <% if current_user %>
+        <%= link_to "Setting", setting_index_path, id: "user_setting", :class => "setting_button" %>
+        <div style="width: 25%; display: inline"></div>
+        Signed in as <strong><%= current_user.name %></strong>
+        <%= link_to "Sign out", signout_path, id: "sign_out", :class => "signout_button" %>
+      <% else %>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", :class => "signin_button" %>
+        <br>
+        <%= link_to "Sign in with Facebook", "/auth/facebook", id: "facebook_sign_in" %>
+      <% end %>
+	</div>
+</div>
+
+<!--
+<div align="right">
+  <div align="right">
+  <% if current_facebook_user %>
+    Signed in as <strong><%= current_facebook_user.name %></strong>!
+    <%= link_to "Sign out", facebook_signout_path, id: "facebook_sign_out" %>
+  <% else %>
+    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "facebook_sign_in" %>
+  <% end %>
+</div>
+</div>
+-->
+
+<h1 align="center">Weather Application</h1>
+
+<div align="center" >
+	<%= button_to "Home", root_path, :method => :get, :class => "coloring" %>
+	<%= button_to "Calendar", events_index_path, :method => :get, :class => "coloring" %>
+	<%= button_to "Favorite Cities", fav_cities_path, :method => :get, :class => "coloring" %>
+	<%= button_to "Weather Search", weather_search_path, :method => :get, :class => "coloring" %>
+	<%= button_to "Weather Forecast", weather_forecast_index_path, :method => :get, :class => "coloring" %>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

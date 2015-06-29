@@ -1,0 +1,32 @@
+<br>
+
+<% if !@hash && current_user %>
+	<p align="center">You have not defined your home city, do so by clicking the setting button on the top right hand corner.</p>
+<% end %>
+
+<div id="map-container" align="center">
+  <div id="map" align="center" >
+  	<script type="text/javascript">
+  	buildMap(<%=raw @hash.to_json %>);
+  	</script>
+  </div>
+</div>
+
+<br>
+
+<% if current_user %>
+	<% if @hash %>
+		<iframe 
+			id="forecast_embed" 
+			type="text/html" 
+			frameborder="0" 
+			height="245" 
+			width="100%" 
+			src="https://forecast.io/embed/#lat=<%=@lat%>&lon=<%=@lng%>&name=<%=@city%>&color=#00aaff&font=Georgia&units=uk"> 
+		</iframe>
+	<% end %>
+<% else %>
+    <p align="center">Sign in for weather update of your city</p>
+<% end %>
+
+
